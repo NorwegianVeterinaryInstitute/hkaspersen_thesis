@@ -1,0 +1,70 @@
+% alternative section titles
+\usepackage{titlesec}
+\titleformat{\chapter}
+  {\normalfont\LARGE\bfseries}{\thechapter}{1em}{}  % set title format
+\titlespacing*{\chapter}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\AtBeginDocument{\let\maketitle\relax}
+
+% quotation package
+\usepackage{epigraph}
+
+% to attach pdfs
+\usepackage{pdfpages}
+
+% prevent hyphenation of words across lines
+\usepackage[none]{hyphenat}
+
+\usepackage{tabu}
+
+% change font type
+\usepackage{fontspec}
+\setmainfont{Cambria}
+
+% fix headers
+\usepackage{fancyhdr,blindtext}
+\fancyhf{}
+\fancyhead[LO]{\slshape \rightmark} %section
+\fancyhead[RO]{\thepage}
+\fancyhead[RE]{\slshape \leftmark} % chapter
+\fancyhead[LE]{\thepage}
+\setlength{\headheight}{27.7pt} % as requested by fancyhdr's warning
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+% change settings for including headers
+\makeatletter
+\renewcommand{\chaptermark}[1]{
+  \if@mainmatter
+    \markboth{Chapter \thechapter{}: #1}{}
+  \else
+    \markboth{#1}{}
+  \fi
+}
+\makeatother
+
+% set toc depth and numbering depth for chapters
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+
+% set raggedbottom layout (better for text with figures etc.)
+\raggedbottom
+
+% include bibliography in toc
+\usepackage[nottoc]{tocbibind}
+
+% set figure caption font size and style
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup[figure]{textfont={small}, labelfont={normalsize,bf}}
+\captionsetup[table]{textfont={small}, labelfont={normalsize,bf}}
+
+% specify figure placements
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+\frontmatter
